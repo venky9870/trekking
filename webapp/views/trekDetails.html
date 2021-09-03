@@ -1,0 +1,87 @@
+<div class="row" id="trekDetails">
+    <img class="location" ng-src={{data.trekDetails.background_image}} alt="{{data.trekDetails.title}}" />
+    <div class="trek_name">
+        <h1>{{data.trekDetails.trek_name}}</h1>
+        <h3>Trek 12</h3>
+    </div>
+    <section class="title">
+        <b>{{data.trekDetails.tag_line}}</b>
+    </section>
+    <section class="facts">
+        {{data.trekDetails.description}}
+    </section>
+    <section class="images">
+      <div class="imageDetails">
+          <img ng-repeat="url in data.images_content" ng-src="{{url}}" alt="{{url}}">
+      </div>
+    </section>
+    <section class="Summary">
+        <div class="col-xs-12">
+            <div class="col-xs-3">
+                <span class="fa fa-star"></span>
+                <label for="">Theme</label>
+                <span>{{data.trekDetails.theme}}</span>
+            </div>
+            <div class="col-xs-3">
+                <span class="fa fa-tree"></span>
+                <label for="">Terrain</label>
+                <span>{{data.trekDetails.terrain}}</span>
+            </div>
+            <div class="col-xs-3">
+                <span class="fa fa-map-marker"></span>
+                <label for="">Nearest Town</label>
+                <span>{{data.trekDetails.nearest_town}}</span>
+            </div>
+            <div class="col-xs-3">
+                <span class="fa fa-calendar"></span>
+                <label for="">Event Dates</label>
+                <span>{{data.trekDetails.from_date | date:small}} - {{data.trekDetails.to_date | date:small}}</span>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="col-xs-3">
+                <span class="fa fa-signal"></span>
+                <label for="">Grade</label>
+                <span>{{data.trekDetails.grade}}</span>
+            </div>
+            <div class="col-xs-3">
+                <span class="glyphicon glyphicon-road"></span>
+                <label for="">Total Trek Distance</label>
+                <span>{{data.trekDetails.total_distance}}</span>
+            </div>
+            <div class="col-xs-3">
+                <span class="fa fa-bus"></span>
+                <label for="">Transportation</label>
+                <span>{{data.trekDetails.transportation}}</span>
+            </div>
+            <div class="col-xs-3">
+                <span class="fa fa-group"></span>
+                <label for="">Team Size</label>
+                <span>{{data.trekDetails.team_size}}</span>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="col-xs-3">
+                <span class="glyphicon glyphicon-grain"></span>
+                <label for="">Food</label>
+                <span>{{data.trekDetails.food}}</span>
+            </div>
+            <div class="col-xs-3">
+                <span class="fa fa-rupee"></span>
+                <label for="">Approx Expenses</label>
+                <span>{{data.trekDetails.expense}}</span>
+            </div>
+        </div>
+    </section>
+    <section class="pre-requisites">
+        <b>Who can join this trek?</b>
+        <b>Anyone with</b>
+        <li ng-repeat="d in data.trekDetails.pre_requisite_content">
+            <span>{{$index+1}}.&nbsp;&nbsp;{{d}}</span>
+        </li>
+    </section>
+      <div class="text-center">
+        <a type="button" class="btn btn-primary" href="#/member/register" ng-hide="member.id==undefined">Join Us</a>
+        <a type="button" class="btn btn-danger" href="#/member/home"  ng-show="member.id!=undefined || member.id!=''">Register</a>
+      </div>
+</div>

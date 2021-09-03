@@ -1,0 +1,100 @@
+<div class="landing_view">
+    <div class="rp_story">
+        <div class="content">
+            <div class="title">
+                <h1>Our Story</h1>
+            </div>
+            <div class="desc">
+              <p><strong>“We live in a beautiful and wonderful world that is full of beauty, charm and adventure.
+                 There is no end to the journey we can have if only we seek them with our eyes open.” </strong>
+              When Jawaharlal Nehru said these words, the world stood up and took notice.
+              And after all these years, the world is still a beautiful place and India’s vast forest belt, jungles and towering mountains are an excellent proof for it.
+            </p>
+              <p>
+
+              A few people wanted to explore and soak in this wonderful gift that Mother Nature has given to us - They wanted to conquer mountains, drink the waters of India’s rivers, conserve and preserve the environment. That is when trekking was formed. Vivek Lakshamanan and Kaliappan Ganesan, two trekking enthusiasts from Infosys Bangalore, dreamt of a forming a voluntary non-profit trekking club that would allow like-minded people, who wish to escape from their corporate den, to trek to unknown places and liberate themselves.
+              trekking was started in June 2015. It started off as a trekking club strictly for Infosys employees whose members could meet weekly for trekking, get involved in environmental education and awareness and social responsibility activities. Today, with over 700 plus members and successful treks to 24 places, trekking has slowly evolved into one of the hottest trekking clubs in Bangalore. And to cater to its growing popularity and presence, trekking has gone public and is now open to everyone.
+              trekking organizes 2 day weekend treks to places in and around Karnataka, India. And in addition to this, trekking also organizes night treks. While the difficulty of the trek might range from easy to intermediate to difficult, the entire team is packed with volunteers who are caring and willing to help each other. Not a single person feels left out as everyone is continuously involved with some activity throughout the course of the trek.
+              </p><p>
+              The trekking core committee team plans for a trek well beforehand and notifies all its members. Interested participants can enroll and will be presented with a detailed instruction and do’s and don’ts list that they need to adhere to. The core committee team also ensures that all transport facilities are taken care beforehand. Once the group reaches the trekking spot, the core committee formally introduces the members to the trek and the ascent begins. Volunteers are strategically placed to ensure that all the newcomers feel comfortable and no one struggles during the trek.
+              The trekking team promises you a fun-filled journey. Along with trekking, they believe that it is their responsibility to clean and preserve our ecology. Thus, they carry out cleanliness drives in the treks they undertake and ensure that the trekking spots are cleaner when they leave them. They travel with a purpose. They travel to get lost in the right direction. They travel to escape the routine life that haunts us during the weekdays. They travel to find our wandering souls in the heart of Mother Nature. They travel to tell stories and travel until life becomes an adventure. And they welcome you to their journey 
+              <strong>“And into the forest I go, to lose my mind and find my soul”</strong></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <hr>
+    </div>
+    <div class="col-xs-12 Summary" id="milestones">
+        <h3>Milestones Achieved</h3>
+        <div class="col-xs-12">
+            <div class="col-xs-3">
+                <span class="fa fa-users"></span>
+                <label for="">Members</label>
+                <span>3488</span>
+            </div>
+            <div class="col-xs-3">
+                <span class="fa fa-paw"></span>
+                <label for="">Survival Treks</label>
+                <span>10</span>
+            </div>
+            <div class="col-xs-3">
+                <span class="fa fa-star"></span>
+                <label for="">Monsoon Trek</label>
+                <span>13</span>
+            </div>
+            <div class="col-xs-3">
+                <span class="fa fa-star-o"></span>
+                <label for="">Beach Trek</label>
+                <span>12</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <hr>
+    </div>
+    <div class="col-xs-12">
+        <h3>Upcoming Treks</h3>
+    </div>
+    <div class="col-xs-6 col-sm-4" id="upComingTrek" ng-repeat="trek in data.upcomingTrek">
+        <div class="card">
+            <img class="card-img-top" ng-src="{{trek.background_image}}" alt="{{trek.trek_name}}">
+            <div class="card-block">
+                <div class="card-title">{{trek.trek_name}}</div>
+                <p class="card-text">
+                    <label for="">Grade :</label>
+                    <span>{{trek.grade}}</span>
+                    <br>
+                    <label for="">Duration :</label>
+                    <span>{{trek.no_of_days}} Days</span>
+                    <br>
+                    <label for="">Approx Expenses :</label>
+                    <span>Rs.{{trek.expense}}</span>
+                </p>
+            </div>
+            <div class="card-footer">
+                <a href="#/trek/details/{{trek.id}}" class="btn btn-primary">More Details</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <hr>
+    </div>
+    <div class="col-xs-12">
+        <h3>Completed Treks</h3>
+    </div>
+    <div class="col-xs-6 col-sm-4" id="completedTrek" ng-repeat="trek in data.completedTrek">
+        <div class="card">
+            <img class="card-img-top" ng-src="{{trek.background_image}}" alt="{{trek.trek_name}}">
+            <div class="card-block">
+                <div class="card-title">{{trek.trek_name}}</div>
+                <p class="card-text" ng-bind="trek.description">
+                </p>
+            </div>
+            <div class="card-footer">
+                <a href="#/view/blog/{{trek.id}}" class="btn btn-primary">View Blog</a>
+                <a href="#" class="btn btn-warning">View Gallery</a>
+            </div>
+        </div>
+    </div>
+</div>

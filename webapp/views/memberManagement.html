@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-xs-3">
+        <div class="form-group">
+            <input type="text" class="form-control" id="" placeholder="Search Member" ng-model="searchMember">
+        </div>
+        <div class="form-group">
+        </div>
+        <table class="table table-width">
+            <tbody>
+                <tr class="cursor-pointer" ng-repeat="member in data.filtered = (data.memberNameList | filter:searchMember)" ng-class="{'text-success':data.selectedMember==member.id}">
+                    <td>
+                        <span class="fa fa-eye" ng-click="data.getMemberDetails(member.id);data.selectedMember=member.id" ng-model="member.selected"><span>
+                    </td>
+                    <td><span ng-bind="member.name"></span></td>
+                </tr>
+                <tr class="text-center">
+                  <td class="text-danger" ng-show="data.filtered.length==0">
+                    No match found
+                  </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-xs-9" id="userDetails">
+      <div class="pull-right">
+        <img src="{{data.memberDetails.image_url}}" alt="" />
+      </div>
+      <div class="form-group">
+        <label for="Name">Name</label>
+        <span>{{data.memberDetails.name}}</span>
+      </div>
+      <div class="form-group">
+        <label>Date of Birth</label>
+        <span>{{data.memberDetails.date_of_birth | date:'mediumDate'}}</span>
+      </div>
+      <div class="form-group">
+        <label for="Name">Blood Group</label>
+        <span>{{data.memberDetails.bloodgroup}}</span>
+      </div>
+      <div class="form-group">
+        <label for="Name">Whatsapp</label>
+        <span>{{data.memberDetails.whatsapp_no}}</span>
+      </div>
+      <div class="form-group">
+        <label for="Name">Contact</label>
+        <span>{{data.memberDetails.contact_no}}</span>
+      </div>
+      <div class="form-group">
+        <label for="Name">Emergency Contact</label>
+        <span>{{data.memberDetails.emergency_contact_person}} - {{data.memberDetails.emergency_contact_no}}</span>
+      </div>
+      <div class="form-group">
+        <label for="Name">Facebook</label>
+        <a href="http://{{data.memberDetails.facebook_url}}">{{data.memberDetails.facebook_url}}</a>
+      </div>
+    </div>
+</div>

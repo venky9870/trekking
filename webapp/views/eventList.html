@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-xs-12">
+        <h3>Upcoming Treks</h3>
+    </div>
+    <div class="col-xs-6 col-sm-4" id="trekList" ng-repeat="trek in data.upcomingTrek">
+        <div class="card">
+            <img class="card-img-top" ng-src="{{trek.background_image}}" alt="{{trek.trek_name}}">
+            <div class="card-block">
+                <div class="card-title">{{trek.trek_name}}</div>
+                <p class="card-text">
+                    <label for="">Grade :</label>
+                    <span>{{trek.grade}}</span>
+                    <br>
+                    <label for="">Duration :</label>
+                    <span>{{trek.no_of_days}} Days</span>
+                    <br>
+                    <label for="">Approx Expenses :</label>
+                    <span>Rs.{{trek.expense}}</span>
+                </p>
+            </div>
+            <div class="card-footer">
+                <a href="#/trek/details/{{trek.id}}" class="btn btn-primary"><i class="fa fa-book"></i>  Details</a>
+                <button type="button" class="btn btn-warning" name="button"><i class="fa fa-edit"></i> Edit</button>
+                <button type="button" class="btn btn-danger" name="button"><i class="fa fa-crosshairs"></i> Cancel</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <hr>
+    </div>
+    <div class="col-xs-12">
+        <h3>Completed Treks</h3>
+    </div>
+    <div class="col-xs-6 col-sm-4" id="completedTrek" ng-repeat="trek in data.completedTrek">
+        <div class="card">
+            <img class="card-img-top" ng-src="{{trek.background_image}}" alt="{{trek.trek_name}}">
+            <div class="card-block">
+                <div class="card-title">{{trek.trek_name}}</div>
+                <p class="card-text" ng-bind="trek.description">
+                </p>
+            </div>
+            <div class="card-footer">
+                <a href="#/view/blog/{{trek.id}}" class="btn btn-primary">View Blog</a>
+                <a href="#" class="btn btn-warning">View Gallery</a>
+            </div>
+        </div>
+    </div>
+</div>

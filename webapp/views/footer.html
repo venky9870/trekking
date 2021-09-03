@@ -1,0 +1,66 @@
+<div class="container-fluid">
+    <div class="col-sm-3 col-xs-6">
+        <h5>About</h5>
+        <div class="footer-list">
+            <ul class="list-unstyled">
+                <li><a ng-class="{'active':location=='/'}" href="#/">Home</a></li>
+                <li><a ng-class="{'active':location=='/about'}" href="#/about">Our Story</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-sm-3 col-xs-6">
+        <h5>Photo Corner</h5>
+        <div class="footer-list">
+            <ul class="list-unstyled">
+                <li><a ng-class="{'active':location=='/gallery'}" href="#/gallery">Gallery</a></li>
+                <li><a ng-class="{'active':location=='/blog'}" href="#/blog">Blog</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="clearfix visible-xs"></div>
+    <div class="col-sm-3 col-xs-6">
+        <h5>Members Corner</h5>
+        <div class="footer-list">
+            <ul class="list-unstyled">
+                <li><a ng-class="{'active':location=='/community'}" href="#/community">Community</a></li>
+                <li><a ng-class="{'active':location=='/join'}" href="#/join">Join Us</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-sm-3 col-xs-6">
+        <h5>Connect</h5>
+        <div class="footer-list">
+            <ul class="list-unstyled">
+                <li>
+                    <ul class="list-inline social-links">
+                        <li>
+                            <a target="_blank" href="//www.facebook.com/groups/trekking/" class="fa fa-facebook"></a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="//twitter.com/" class="fa fa-twitter"></a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="//in.linkedin.com/" class="fa fa-linkedin"></a>
+                        </li>
+                        <li>
+                            <a href="//google.com/" class="fa fa-google-plus"></a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="address-block">
+                      Vivek - 9360534586,Kali - 9659907119
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-sm-3 col-xs-6">
+        <h5>Blogs</h5>
+        <div class="footer-list">
+            <ul class="list-unstyled">
+                <li ng-repeat="list in data.completedTrek"><a href="#/view/blog/{{list.id}}">{{list.from_date | date:mediumDate}} - {{list.trek_name}}</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

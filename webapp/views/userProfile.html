@@ -1,0 +1,41 @@
+<div class="profile-sidebar">
+    <div class="profile-userpic">
+        <img ng-src="{{member.userProfilePic}}" ng-if="data.memberLogged.image_url!=undefined" class="img-responsive" alt="">
+        <img src="images/user/user.jpg" ng-if="data.memberLogged.image_url==undefined" class="img-responsive" alt="">
+    </div>
+    <div class="profile-usertitle">
+        <div class="profile-usertitle-name">
+            {{data.memberLogged.name}}
+        </div>
+        <div class="profile-usertitle-job">
+            {{data.memberLogged.company_name}}
+        </div>
+    </div>
+    <div class="profile-userbuttons">
+        <button type="button" class="btn btn-primary btn-sm">Follow</button>
+        <button type="button" class="btn btn-danger btn-sm" ng-click="signOut()">Logout</button>
+    </div>
+    <div class="profile-usermenu">
+        <ul class="nav">
+            <li>
+                <a href="javascript:;">
+                    <i class="fa fa-birthday-cake"></i> {{data.memberLogged.date_of_birth | date:'mediumDate'}} </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="fa fa-heartbeat"></i>{{data.memberLogged.bloodgroup}}</a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="fa fa-whatsapp"></i> {{data.memberLogged.whatsapp_no}} </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="fa fa-mobile"></i> {{data.memberLogged.contact_no}} </a>
+            </li>
+            <li>
+                <a href="http://www.facebook.com/{{data.memberLogged.facebook_url}}" target="_blank">
+                    <i class="fa fa-facebook-official"></i> @{{data.memberLogged.facebook_url}} </a>
+            </li>
+        </ul>
+    </div>

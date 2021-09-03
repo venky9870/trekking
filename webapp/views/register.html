@@ -1,0 +1,135 @@
+<div class="col-xs-12" ng-init="appStart()">
+    <div class="text-center">
+        <h3>Member Registration</h3>
+        <span class="btn btn-danger" ng-click="signUpWith(this)" ng-show="(member.name==undefined || member.name=='') || isSigned==false">
+                <span class="fa fa-google-plus"></span>&nbsp;&nbsp;
+        <span>Sign in with Google</span>
+        </span>
+        <span class="btn btn-danger" ng-hide="(member.name==undefined || member.name=='') || isSigned==false">
+                <span class="fa fa-google-plus"></span>&nbsp;&nbsp;
+                <span>Signed in as {{member.name}}</span>
+        </span>
+        <span  ng-show="(member.name==undefined || member.name=='') || isSigned==false" class="btn btn-primary" ng-click="signUpWith(this)">
+                <span class="fa fa-google-plus"></span>&nbsp;&nbsp;
+        <span>Sign up with Google</span>
+        </span>
+    </div>
+    <hr>
+    <div class="col-xs-offset-3 col-xs-6" ng-hide="(member.name==undefined || member.name=='') || isSigned==false">
+        <div class="text-center">
+            <h3>Welcome {{member.name}} !</h3>
+            <p>
+                Please complete your registration by filling this form.
+            </p>
+        </div>
+        <div id="registerForm" class="registrationForm">
+            <form role="form" novalidate name="registerForm">
+                <div class="form-group">
+                    <label for="">Date of Birth</label>
+                    <select class="input-sm" ng-model="register.dob_date" name="date" required>
+                        <option value="">-Date-</option>
+                        <option ng-repeat="date in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
+          18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]" value="{{date}}">{{date}}</option>
+                    </select>
+                    <select class="input-sm" ng-model="register.dob_month" name="dob_month" required>
+                        <option value="">-Month-</option>
+                        <option ng-repeat="month in [{month:'JAN',value:'01'},{month:'FEB',value:'02'}, {month:'MAR',value:'03'},{month:'APR',value:'04'}
+                        , {month:'MAY',value:'05'}, {month:'JUN',value:'06'}, {month:'JUL',value:'07'},{month:'AUG',value:'08'}, {month:'SEP',value:'09'}, {month:'OCT',value:'10'},{month:'NOV',value:'11'}
+                        , {month:'DEC',value:'12'}]" value="{{month.value}}">{{month.mo}}</option>
+                    </select>
+                    <input type="text" class="input-sm" name="year" ng-model="register.dob_year" placeholder="Year">
+                    <span ng-show="registerForm.date_of_birth.$dirty && registerForm.date_of_birth.$invalid" class="text-danger">Invalid Input</span>
+                </div>
+                <div class="form-group">
+                    <label>Gender: </label>
+                    <input type="radio" value="male" ng-model="register.gender" /><span class="padLt5px padRt5px">&nbsp;&nbsp;Male</span>
+                    <input type="radio" value="female" ng-model="register.gender" /><span class="padLt5px">&nbsp;&nbsp;Female</span>
+                </div>
+                <div class="form-group">
+                    <label for="">Blood Group</label>
+                    <input type="text" class="form-control" placeholder="Blood Group*" name="bloodgroup" ng-model="register.bloodgroup" required maxlength=5 ng-pattern="/^[a-zA-Z0-9+-]*$/" />
+                    <span ng-show="registerForm.bloodgroup.$dirty && registerForm.bloodgroup.$invalid" class="text-danger">Invalid Input</span>
+                </div>
+                <div class="form-group">
+                    <label for="">Whatsapp Number</label>
+                    <input type="text" class="form-control" placeholder="Whatsapp Number*" name="whatsapp_no" ng-model="register.whatsapp_no" maxlength="10" ng-pattern="/^\d{10}$/" required/>
+                    <span ng-show="registerForm.whatsapp_no.$dirty && registerForm.whatsapp_no.$invalid" class="text-danger">Invalid Number</span>
+                </div>
+                <div class="form-group">
+                    <label for="">Contact Number</label>
+                    <input type="text" class="form-control" placeholder="Contact Number*" name="contact_no" ng-model="register.contact_no" maxlength="10" ng-pattern="/^\d{10}$/" required/>
+                    <span ng-show="registerForm.contact_no.$dirty && registerForm.contact_no.$invalid" class="text-danger">Invalid Number</span>
+                </div>
+                <div class="form-group">
+                    <label for="">Company Name</label>
+                    <input type="text" class="form-control" placeholder="Company Name*" name="company_name" ng-model="register.company_name" ng-pattern="/^[a-zA-Z0-9]*$/" required/>
+                    <span ng-show="registerForm.company_name.$dirty && registerForm.company_name.$invalid" class="text-danger">Invalid Input</span>
+                </div>
+                <div class="form-group">
+                    <label for="">Employee No</label>
+                    <input type="text" class="form-control" placeholder="Employee Number" name="emp_no" ng-model="register.emp_no" />
+                </div>
+                <div class="form-group">
+                    <label for="peramanent">Permanent Address</label>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Address Line 1" name="permanent_address_1" ng-model="register.permanent_address_1" required/>
+                    <span ng-show="registerForm.permanent_address_1.$dirty && registerForm.permanent_address_1.$invalid" class="text-danger">Invalid Input</span>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Address Line 2" name="permanent_address_2" ng-model="register.permanent_address_2" required/>
+                    <span ng-show="registerForm.permanent_address_2.$dirty && registerForm.permanent_address_2.$invalid" class="text-danger">Invalid Input</span>
+                </div>
+                <div class="form-group">
+                    <label for="peramanent">Temporary Address</label>
+                    <span><input type="checkbox" ng-model="permanent_address_check" ng-click="register.temp_address_1=register.permanent_address_1;register.temp_address_2=register.permanent_address_2;"> Same as Permanent Address</span>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Address Line 1" name="temp_address_1" ng-disabled="permanent_address_check==true" ng-model="register.temp_address_1" required/>
+                    <span ng-show="registerForm.temp_address_1.$dirty && registerForm.temp_address_1.$invalid" class="text-danger">Invalid Input</span>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Address Line 2" name="temp_address_2" ng-disabled="permanent_address_check==true" ng-model="register.temp_address_2" required/>
+                    <span ng-show="registerForm.temp_address_2.$dirty && registerForm.temp_address_2.$invalid" class="text-danger">Invalid Input</span>
+                </div>
+                <div class="form-group">
+                    <label for="">Emergency Contact Number</label>
+                    <input type="text" class="form-control" placeholder="Emergency Contact Number*" name="emergency_contact_no" ng-model="register.emergency_contact_no" required/>
+                    <span ng-show="registerForm.eConNum.$dirty && registerForm.emergency_contact_no.$invalid" class="text-danger">Invalid Input</span>
+                </div>
+                <div class="form-group">
+                    <label for="">Emergency Contact Name</label>
+                    <input type="text" class="form-control" placeholder="Emergency Contact Person*" name="emergency_contact_person" ng-model="register.emergency_contact_person" ng-pattern="/^[a-zA-Z0-9]*$/" required/>
+                    <span ng-show="registerForm.emergency_contact_person.$dirty && registerForm.emergency_contact_person.$invalid" class="text-danger">Invalid Input</span>
+                </div>
+                <div class="form-group">
+                    <label for="">Volunteering Activites</label>
+                    <input type="text" class="form-control" placeholder="Volunteering Activities: Cycling, Marathon" name="vol" name="volunteering_activities" ng-model="register.volunteering_activities" />
+                </div>
+                <div class="form-group">
+                    <label for="">Facebook Profile</label>
+                    <input type="text" class="form-control" placeholder="Facebook Profile Link" ng-model="register.facebook_url" name="facebook_url" />
+                </div>
+                <br>
+                <div class="form-group" id="captchaText">
+                    <span class="captchaFont" ng-bind="register.captchaCode"></span> &nbsp;&nbsp;&nbsp;&nbsp;
+                    <i class="fa fa-refresh" aria-hidden="true" ng-click="register.captcha()"></i>
+                </div>
+                <br>
+                <p>
+                    Enter the text above in the text box
+                </p>
+                <div class="form-group">
+                    <input type="text" ng-model="register.userInput" ng-keyup="register.ValidCaptcha()" />
+                    <i class="glyphicon glyphicon-ok greenColor" aria-hidden="true" ng-model="showTick" name="showTick" ng-show="showTick"></i>
+                </div>
+            </form>
+        </div>
+        <div class="text-center">
+            <button class="btn btn-default" ng-click="registerMember()" ng-class="{'btn-success':registerForm.$valid}" ng-disabled="registerForm.$invalid">Submit</button>
+            <button class="btn btn-warning" ng-class="{'disabled':!registerForm.$dirty}">Reset</button>
+        </div>
+    </div>
+</div>
+<br>
+<br>

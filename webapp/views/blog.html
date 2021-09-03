@@ -1,0 +1,22 @@
+<div class="col-xs-12">
+  <h1>Trekking - Blog Archives</h1>
+</div>
+<div class="col-xs-12">
+  <hr>
+</div>
+<br><br>
+<div class="col-xs-12">
+  <div class="col-xs-6 col-sm-4" id="completedTrek" ng-repeat="trek in data.completedTrek">
+      <div class="card">
+          <img class="card-img-top" ng-src="{{trek.imageUrl}}" alt="{{trek.title}}">
+          <div class="card-block">
+                <h5 class="card-title">{{trek.trekName}}</h5>
+              <p class="card-text" ng-bind="trek.eventDescription">
+              </p>
+          </div>
+          <div class="card-footer">
+            <a href="#/view/blog/{{$index}}" class="btn btn-primary">Read out more!</a>
+          </div>
+      </div>
+  </div>
+</div>

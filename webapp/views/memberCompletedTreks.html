@@ -1,0 +1,26 @@
+<br>
+<div class="row">
+    <div class="memberTrekList" ng-hide="data.addTrekFlag==true" id="trekList" ng-repeat="trek in data.completedTrek">
+        <div class="card">
+            <img class="card-img-top" ng-src="{{trek.background_image}}" alt="{{trek.trek_name}}">
+            <div class="card-block">
+                <div class="card-title">{{trek.trek_name}}</div>
+                <p class="card-text">
+                    <label for="">Grade :</label>
+                    <span>{{trek.grade}}</span>
+                    <br>
+                    <label for="">Duration :</label>
+                    <span>{{trek.no_of_days}} Days</span>
+                    <br>
+                    <label for="">Approx Expenses :</label>
+                    <span>Rs.{{trek.expense}}</span>
+                </p>
+            </div>
+            <div class="card-footer">
+                <a href="#/trek/details/{{trek.id}}" class="btn btn-primary">More Details</a>
+                <a href="#/trek/details/{{trek.id}}" class="btn btn-primary">View Blog</a>
+            </div>
+        </div>
+    </div>
+
+</div>

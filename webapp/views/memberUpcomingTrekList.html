@@ -1,0 +1,42 @@
+<div class="col-xs-6 col-sm-4" id="trekList" ng-repeat="trek in data.upcomingTrek">
+    <div class="card">
+        <img class="card-img-top" ng-src="{{trek.background_image}}" alt="{{trek.trek_name}}">
+        <div class="card-block">
+            <div class="card-title">{{trek.trek_name}}</div>
+            <p class="card-text">
+                <label for="">Grade :</label>
+                <span>{{trek.grade}}</span>
+                <br>
+                <label for="">Duration :</label>
+                <span>{{trek.no_of_days}} Days</span>
+                <br>
+                <label for="">Approx Expenses :</label>
+                <span>Rs.{{trek.expense}}</span>
+            </p>
+        </div>
+        <div class="card-footer">
+            <a href="#/trek/details/{{trek.id}}" class="btn btn-primary">More Details</a>
+            <a ng-click="data.registerTrek(trek)" ng-hide="trek.registeredFlag==true" href="javascript:;" class="btn btn-primary">Register</a>
+            <button type="button" ng-show="trek.registeredFlag==true" class="btn btn-success">Regsitered</button>
+        </div>
+    </div>
+</div>
+<div class="modal" id="registerModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        Trek Registration
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="">Starting Point :</label>
+          <input type="text" class="form-control" name="startingpoint" value="" ng-model="data.selectedTrek.starting_point">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning"  data-dismiss="modal">Close</button>
+        <button type="button" class="btn" ng-class="{'btn-info':data.selectedTrek.starting_point=='','btn-primary':data.selectedTrek.starting_point!=''}" ng-disabled="data.selectedTrek.starting_point==''" ng-click="data.confirmRegistration(data.selectedTrek)">Register</button>
+      </div>
+    </div>
+  </div>
+</div>

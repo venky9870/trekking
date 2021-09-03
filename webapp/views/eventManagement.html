@@ -1,0 +1,194 @@
+<br>
+<div class="row">
+  &nbsp;&nbsp;&nbsp;
+  <div class="btn-group">
+    <button type="button" class="btn btn-default" ng-click="createEvent.create()">
+      Create New Event
+    </button>
+    <button type="button" class="btn btn-info">
+      Treks - <span class="badge">{{data.rpTrekList.length}}</span>
+    </button>
+    <button type="button" class="btn btn-success">
+      Completed - <span class="badge">{{data.completedTrek.length}}</span>
+    </button>
+    <button type="button" class="btn btn-warning">
+      Not Completed - <span class="badge">{{data.upcomingTrek.length}}</span>
+    </button>
+  </div>
+</div>
+<br>
+<div class="row" id="eventManagement">
+    <div class="col-xs-12">
+        <table class="table table-bordered table-width table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Status </th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Trek Name</th>
+                    <th>Theme </th>
+                    <th>Team Size </th>
+                    <th>Expenses</th>
+                    <th>Options </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="list in data.rpTrekList | orderBy:'-from_date' ">
+                    <td>
+                        {{list.id}}
+                    </td>
+                    <td>
+                        {{list.status}}
+                    </td>
+                    <td>
+                        {{list.from_date | date:'mediumDate'}}
+                    </td>
+                    <td>
+                        {{list.to_date | date:'mediumDate'}}
+                    </td>
+                    <td>
+                        {{list.trek_name}}
+                    </td>
+                    <td>
+                        {{list.theme}}
+                    </td>
+                    <td>
+                        {{list.team_size}}
+                    </td>
+                    <td>
+                        {{list.expense}}
+                    </td>
+                    <td>
+                        <span class="fa fa-star text-success" ng-hide="list.status=='Completed' || list.status=='Cancelled'" ng-click="eventManagement.completeEvent(list)"></span>
+                        <span class="fa fa-edit text-warning" ng-click="eventManagement.editEvent(list)" ></span>
+                        <span class="fa fa-trash text-danger" ng-click="eventManagement.cancelEvent(list)"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="modal" id="eventModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span>Create a new Event</span>
+            </div>
+            <div class="modal-body">
+                <form name="validateEvent">
+                    <div class="form-group">
+                        <label class="control-label" for="trek_name">Trek Name*</label>
+                        <input type="text" class="form-control" autofocus ng-model="createEvent.trek_name" name="trek_name" ng-class="{'has-success':true}" required placeholder="Enter the trek name" />
+                        <p class="help-block">eg: Nishani Motte,Kudre Mukh</p>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="tag_line">Tag Line*</label>
+                        <textarea cols="40" rows="3" class="form-control" ng-model="createEvent.tag_line" name="tag_line" required placeholder="Enter the tag line"></textarea>
+                        <p class="help-block">eg: Do you like to survive in heavy dow pour and trek in leeched kingdom of western ghats? Then come and join us this weekend to get of regular city life and enjoy with mother nature.</p>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="description">Description*</label>
+                        <textarea cols="40" rows="3" class="form-control" ng-model="createEvent.description" name="description" required placeholder="Description"></textarea>
+                        <p class="help-block">eg: A challenging weekend trek through dense rain forests, endless grasslands, clear streams and a beautiful waterfall for a reward.</p>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="background_image">Background Image</label>
+                        <input type="text" class="form-control" ng-model="createEvent.background_image" name="background_image" required placeholder="Background Image" />
+                        <p class="help-block">eg: http://background_image1.png</p>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="images">Images</label>
+                        <div class="form-inline" ng-repeat="image in createEvent.images_content track by $index">
+                            <input type="text" style="width:300px;" class="form-control" ng-model="image.imageurl" name="image{{$index}}" required placeholder="Image{{$index+1}}" />
+                            <span class="btn btn-default fa fa-minus-circle" ng-hide="($first && createEvent.images.length==1)" ng-click="createEvent.deleteImages($index)"></span>
+                            <span class="btn btn-default fa fa-plus-circle" ng-show="($first && createEvent.images.length==1) || $last" ng-click="createEvent.addImages()"></span>
+                            <br>
+                        </div>
+                        <p class="help-block">eg: http://image1.png</p>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="theme">Theme*</label>
+                        <input type="text" class="form-control" ng-model="createEvent.theme" name="theme" required placeholder="Enter the theme" />
+                        <p class="help-block">eg: Monsoon,Dry Trek.</p>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="terrain">Terrain*</label>
+                        <input type="text" class="form-control" ng-model="createEvent.terrain" name="terrain" required placeholder="Enter the terrain" />
+                        <p class="help-block">eg: Dense Forest/Grasslands.</p>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="nearest_town">Nearest Town*</label>
+                        <input type="text" class="form-control" ng-model="createEvent.nearest_town" name="nearest_town" required placeholder="Enter the nearest town" />
+                        <p class="help-block">eg: Bangalore,Coimbatore,Chennai</p>
+                    </div>
+                    <div class="form-inline">
+                        <p class="input-group">
+                            <input type="text" class="form-control" uib-datepicker-popup ng-model="createEvent.from_date" is-open="createEvent.popup1.opened" datepicker-options="createEvent.dateOptions"  close-text="Close" />
+                            <span class="input-group-btn">
+                      <button type="button" class="btn btn-default" ng-click="createEvent.open1()"><i
+                         class="glyphicon glyphicon-calendar">
+                       </i>
+                     </button>
+                    </span>
+                        </p>
+                        <p class="input-group">
+                            <input type="text" class="form-control" uib-datepicker-popup ng-model="createEvent.to_date" is-open="createEvent.popup2.opened" datepicker-options="createEvent.dateOptions" close-text="Close" />
+                            <span class="input-group-btn">
+                      <button type="button" class="btn btn-default" ng-click="createEvent.open2()">
+                        <i class="glyphicon glyphicon-calendar">
+                        </i>
+                      </button>
+                    </span>
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="grade">Grade*</label>
+                        <input type="text" class="form-control" ng-model="createEvent.grade" name="grade" required placeholder="Grade" />
+                        <p class="help-block">eg: Difficult/Moderate/Easy.</p>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="total_distance">Total Distance*</label>
+                        <input type="text" class="form-control" ng-model="createEvent.total_distance" name="total_distance" required placeholder="Total Distance" />
+                        <p class="help-block">eg: Distance in kms.</p>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="transportation">Transportation*</label>
+                        <input type="text" class="form-control" ng-model="createEvent.transportation" name="transportation" required placeholder="Enter the mode of transportation" />
+                        <p class="help-block">eg: Bus,Train,Walk,Flight.</p>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="team_size">Team Size*</label>
+                        <input type="text" class="form-control" ng-model="createEvent.team_size" placeholder="Team Size" />
+                        <p class="help-block">eg: 20/50.</p>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="food">Food*</label>
+                        <textarea cols="40" rows="5" class="form-control" ng-model="createEvent.food" name="food" required placeholder="Instructions to carry the food"></textarea>
+                        <p class="help-block">eg: Pack 2 days of food in advance.</p>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="expense">Expense*</label>
+                        <input type="text" class="form-control" ng-model="createEvent.expense" name="expense" required placeholder="Enter the expense of the trek" />
+                        <p class="help-block">eg: 2000/2500/500.</p>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="pre_requisite">Pre-requisites</label>
+                        <div class="form-inline" ng-repeat="requisite in createEvent.pre_requisite_content track by $index">
+                            <input type="text" style="width:300px;" class="form-control" ng-model="requisite.requisite" name="requisite{{$index}}" required placeholder="Requisite {{$index+1}}" />
+                            <button class="btn btn-default fa fa-minus-circle" ng-hide="($first && createEvent.pre_requisite.length==1)" ng-click="createEvent.deleteRequisite($index)"></button>
+                            <button class="btn btn-default fa fa-plus-circle" ng-show="($first && createEvent.pre_requisite.length==1) || $last" n ng-click="createEvent.addRequisite()"></button>
+                            <br>
+                        </div>
+                        <p class="help-block">eg: Should have 2 two day treks</p>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" value="Save" ng-class="{'disabled btn-info':validateEvent.$invalid}" class="btn btn-primary" ng-click="saveEvent()">Save</button>
+                <button class="btn btn-warning" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+</div>

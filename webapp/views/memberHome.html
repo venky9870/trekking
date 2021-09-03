@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-xs-3">
+        <div class="col-sm-12">
+            <div ng-include="'pages/userProfile.html'">
+
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-9">
+        <uib-tabset active="active">
+            <uib-tab index="0" select="data.upcomingTreks()" heading="Upcoming Treks">
+                <br>
+                <br>
+                <div class="col-sm-12">
+                    <div ng-include="'pages/memberUpcomingTrekList.html'">
+
+                    </div>
+                </div>
+            </uib-tab>
+
+            <uib-tab index="2" heading="Registered Treks">
+                <div class="col-sm-12">
+                    <h3 class="text-center text-danger">
+                  You haven't registered for any treks
+                </h3>
+                </div>
+            </uib-tab>
+            <uib-tab index="3" heading="Completed Treks" select="data.trekHistory()">
+                <div class="col-sm-12">
+                    <br>
+                    <div ng-include="'pages/memberCompletedTreks.html'">
+
+                    </div>
+                </div>
+            </uib-tab>
+            <uib-tab index="5" select="data.memberManagement()" heading="Member Management">
+                <div class="col-sm-12">
+                    <br>
+                    <div ng-include="'pages/memberManagement.html'">
+
+                    </div>
+                </div>
+            </uib-tab>
+            <uib-tab index="6" heading="Event Management">
+                <div class="col-sm-12">
+                    <div ng-include="'pages/eventManagement.html'">
+
+                    </div>
+                </div>
+            </uib-tab>
+        </uib-tabset>
+    </div>
+</div>
